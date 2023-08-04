@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/add.css') }}">
+    <title>Додавання продукта</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="main-block">
+            {{ form.hidden_tag() }}
+
+            <div class="main-text">
+                <p>Додавання товару</p>
+            </div>
+
+            <div class="main-block-image main-block-block">
+                {{ form.image(placeholder="Зображення продукта") }}
+            </div>
+
+            <div class="main-block-name main-block-block">
+                {{ form.name(placeholder="Назва товару") }}
+            </div>
+
+            <div class="main-block-name-errors main-block-block">
+                {% for error in form.name.errors %}
+                    <span class="input-group-text text-danger" style="color:red">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-description main-block-block">
+                {{ form.description(placeholder="Опис товару") }}
+            </div>
+
+            <div class="main-block-description-errors main-block-block">
+                {% for error in form.description.errors %}
+                    <span class="input-group-text text-danger" style="color:red">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-size main-block-block">
+                {{ form.size(placeholder="Розмір товару") }}
+            </div>
+
+            <div class="main-block-size-errors main-block-block">
+                {% for error in form.size.errors %}
+                    <span class="input-group-text text-danger" style="color:red">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-price main-block-block">
+                {{ form.price(placeholder="Ціна товару") }}
+            </div>
+
+            <div class="main-block-price-errors main-block-block">
+                {% for error in form.price.errors %}
+                    <span class="input-group-text text-danger" style="color:red">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-buttons">
+                <div class="main-block-button-submit buttons">
+                    <button type="submit">Підтвердити</button>
+                </div>
+                <div class="main-block-button-reset buttons">
+                    <button type="reset">Очистити</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

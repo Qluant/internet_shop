@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редагування</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="main-block">
+            {{ form.hidden_tag() }}
+
+            <div class="main-text">
+                <p>Редагування категорії</p>
+            </div>
+
+            <div class="Reports">
+                {% for report in reports %}
+                    <p>{{ report }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-title main-block-block">
+                {{ form.title(placeholder="Назва категорії", value=category.title) }}
+            </div>
+
+            <div class="main-block-title-errors main-block-block">
+                {% for error in form.title.errors %}
+                    <span class="input-group-text text-danger" style="color:red">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-description main-block-block">
+                {{ form.description(placeholder="Опис категорії", value=category.description) }}
+            </div>
+
+            <div class="main-block-description-errors main-block-block">
+                {% for error in form.description.errors %}
+                    <span class="input-group-text text-danger" style="color:red">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="main-block-buttons">
+                <div class="main-block-button-submit buttons">
+                    <button type="submit">Підтвердити</button>
+                </div>
+                <div class="main-block-button-reset buttons">
+                    <button type="reset">Очистити</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

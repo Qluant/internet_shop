@@ -1,0 +1,31 @@
+{% extends "__layout.html" %}
+
+{% block head %}
+    <link href="{{ url_for('static', filename='styles/base.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/user_profile.css') }}" rel="stylesheet">
+    {% endblock %}
+
+{% block content %}
+    <div class="user-container">
+        <div class="user-container-description">
+            <p>{{ profile_owner.moniker }}</p>
+            <p>{{ profile_owner.email }}</p>
+            <p>{{ profile_owner.password }}</p>
+        </div>
+        {% if user.role.title == "Admin" %}
+            <form action="" method="post">
+                {% if profile_owner.role.title != "Banned" %}
+                    <div class="user-container-promote">
+                        <button type="submit" name="action" value="promote">{{ "Прибрати з адмінів" if profile_owner.role.title == "Admin" else "Назначити адміном" }}</button>
+                    </div>
+                {% endif %}
+                <div class="user-container-ban">
+                    <button type="submit" name="action" value="ban">{{ "Заблокувати" if profile_owner.role.title != "Banned" else "Розблокувати" }}</button>
+                </div>
+            </form>
+        {% endif %}
+        {% if not user == profile_owner %}
+            <a href="{{ url_for('user_profile', user_id=user.id) }}">Свій профіль</a>
+        {% endif %}
+    </div>
+{% endblock %}

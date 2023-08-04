@@ -1,0 +1,39 @@
+{% extends "__layout.html" %}
+
+{% block head %}
+    <link href="{{ url_for('static', filename='styles/base.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/users.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="users-box">
+        <form action="" method="post">
+            {% for user in users %}
+                <div class="user-container">
+                    <div class="user-container-description">
+                        <p>{{ user.moniker }}</p>
+                        <p>{{ user.email }}</p>
+                        <p>Ранг: {{ user.role.title }}</p>
+                    </div>
+
+                    {% if page_asker %}
+                        {% if page_asker.role.title == "Admin" %}
+                            {% if user.role.title != "Banned" %}
+                                <div class="user-container-promote">
+                                    <button type="submit" name="action" value="promote|{{ user.id }}">{{ "Прибрати з адмінів" if user.role.title == "Admin" else "Назначити адміном" }}</button>
+                                </div>
+                            {% endif %}
+                            <div class="user-container-ban">
+                                <button type="submit" name="action" value="ban|{{ user.id }}">{{ "Заблокувати" if user.role.title != "Banned" else "Розблокувати" }}</button>
+                            </div>
+                        {% endif %}
+                        <a href="{{ url_for('user_profile', user_id=user.id) }}">Детальніше</a>
+                    {% endif %}
+                </div>
+
+            {% endfor %}
+        </form>
+    </div>
+
+{% endblock %}

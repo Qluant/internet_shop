@@ -1,0 +1,50 @@
+{% extends "__layout.html" %}
+
+{% block title %}
+    <title>Product - {{ product.name }}</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/product.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div class="product-container">
+            <img src="{{ url_for('static', filename=get_product_picture_path(name=product.product_picture_name, absolute_path=False)) }}" alt="">
+            <div class="product-container-description">
+                <div class="product-container-description-text">
+                    <p class="product-name">{{ product.name}}</p>
+                    <p>{{ product.description }}</p>
+                    <p>Розмір: {{ product.size }}</p>
+                    <p>Ціна: {{ product.price }} грн.</p>
+                </div>
+
+                {% if user %}
+                <form action="" method="post">
+                    <div class="product-container-description-basket">
+                        <button type="submit" name="action" value="basket">{{ "Прибрати с кошика" if is_in_basket(user=user, product=product) else "Додати в кошик" }}</button>
+                    </div>
+                    {% if user.role.title == "Admin" %}
+                        <div class="product-container-description-edit">
+                            <button type="submit" name="action" value="edit">Редагувати товар</button>
+                        </div>
+                        <div class="product-container-description-delete">
+                            <button type="submit" name="action" value="delete">Видалити товар</button>
+                        </div>
+                    {% endif %}
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="links">
+        <div class="links-previous">
+            <a href="{{ url_for('product_info', product_id=previous) }}">{{ "<- Минулий товар" }}</a>
+        </div>
+        <div class="links-next">
+            <a href="{{ url_for('product_info', product_id=next) }}">{{ "Наступний товар ->" }}</a>
+        </div>
+    </div>
+{% endblock %}

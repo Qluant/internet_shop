@@ -1,0 +1,26 @@
+{% extends "__layout.html" %}
+
+{% block title %}
+    <title>Products</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="products">
+            {% for product in category.products %}
+                <div class="product-container">
+                    <img src="{{ url_for('static', filename=get_product_picture_path(name=product.product_picture_name, absolute_path=False)) }}" alt="">
+                    <div class="product-container-description">
+                        <p>{{ product.name }}</p>
+                        <p>Ціна: {{ product.price }} грн.</p>
+                        <a href="{{ url_for('product_info', product_id=product.id) }}">Детальніше</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

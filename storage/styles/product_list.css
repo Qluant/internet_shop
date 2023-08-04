@@ -1,0 +1,111 @@
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+main {
+    padding: 20px;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+.product-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 60%;
+    margin-left: 20%;
+    margin-bottom: 0.6%;
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    position: relative;
+}
+.product-container img {
+    width: 50%;
+    height: 100%;
+}
+.product-container-description p {
+    margin: 0;
+    font-size: 1.4rem;
+}
+.product-container-description p:first-child {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.product-container-description-text {
+    position: absolute;
+    top: 4%;
+    right: 2%;
+    text-align: right;
+}
+.product-container-description button {
+    padding: 2px 5px;
+    font-size: 16px;
+    background-color: #ffa500;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 4%;
+    right: 12%;
+    height: 30px;
+}
+.product-container-description a {
+    padding: 2px 5px;
+    font-size: 16px;
+    color: #ffa500;
+    border: 1px solid #ffa500;
+    position: absolute;
+    bottom: 4%;
+    right: 2%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+.product-container-description a:hover {
+    background-color: #ffa500;
+    color: #fff;
+}
+.links a{
+    padding: 2px 5px;
+    font-size: 16px;
+    color: #915e00;
+    background-color: #ffa500;
+    border: 1px solid #915e00;
+    position: absolute;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+.links-add a{
+    padding: 2px 5px;
+    font-size: 16px;
+    color: #915e00;
+    background-color: #ffa500;
+    border: 1px solid #915e00;
+    position: absolute;
+    right: 29%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+.links-back a{
+    left: 21%;
+    position: absolute;
+}
+.links-next a{
+    right: 20%;
+    position: absolute;
+}

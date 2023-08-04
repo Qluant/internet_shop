@@ -1,0 +1,34 @@
+@media screen and (max-width: 510px) {
+    .main-block{
+        width: 400px;
+        height: 400px;
+    }
+}
+@media  screen and (max-width: 360px) {
+    .main-block{
+        width: 300px;
+        height: 300px;
+    }
+    .main-text{
+        font-size: 2rem;
+        font-weight: bold;
+        position: relative;
+        bottom: 34px;
+    }
+    .main-block-block input{
+        width: 250px;
+        height: 40px;
+    }
+    .main-block-block input:focus{
+        width: 280px;
+        height: 50px;
+    }
+    .buttons button{
+        position: relative;
+        top: 20px;
+        width: 100px;
+        color: white;
+        font-weight: 900;
+        height: 40px;
+    }
+}

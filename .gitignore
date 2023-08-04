@@ -1,5 +1,6 @@
 /.venv
 /vendor
 /.vscode
+/storage/product_photos
 **/__pycache__/
 **/migrations/

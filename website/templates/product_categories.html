@@ -1,0 +1,30 @@
+{% extends "__layout.html" %}
+
+{% block title %}
+    <title>Categories</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/product_categories.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="categories">
+        <form action="" method="post">
+            {% for category in categories %}
+                <div class="category-container">
+                    <div class="category-container-description">
+                        <div class="category-container-description-text">
+                            <p>{{ category.title }}</p>
+                            <p>{{ category.description}}</p>
+                        </div>
+                        <div class="category-container-description-button">
+                            <button type="submit" name="action" value="change|{{ category.id }}">{{ "Прибрати" if category in product.categories else "Додати" }}</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </form>
+    </div>
+{% endblock %}

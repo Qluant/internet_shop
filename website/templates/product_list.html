@@ -1,0 +1,52 @@
+{% extends "__layout.html" %}
+
+{% block title %}
+    <title>My basket</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/product_list.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="products">
+            <form action="" method="post">
+                {% for product in products %}
+                    <div class="product-container">
+                        <img src="{{ url_for('static', filename=get_product_picture_path(name=product.product_picture_name, absolute_path=False)) }}" alt="">
+                        <div class="product-container-description">
+                            <div class="product-container-description-text">
+                                <p>{{ product.name }}</p>
+                                <p>Ціна: {{ product.price }} грн.</p>
+                                <p>Розмір: {{ product.size }}</p>
+                            </div>
+                            {% if is_basket %}
+                                <button type="submit" name="product_id" value="{{ product.id }}">Прибрати з кошика</button>
+                            {% endif %}
+                                <a href="{{ url_for('product_info', product_id=product.id) }}">Детальніше</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="links">
+                    {% if is_products and user and user.role.title == "Admin" %}
+                        <div class="links-add">
+                            <a href="{{ url_for('product_adding') }}">Додати продукт</a>
+                        </div>
+                    {% endif %}
+                    {% if back_posses %}
+                        <div class="links-back">
+                            <a href="{{ url_for('product_viewer', product_range=back_posses) }}">Попередня сторінка</a>
+                        </div>
+                    {% endif %}
+                    {% if next_posses %}
+                        <div class="links-next">
+                            <a href="{{ url_for('product_viewer', product_range=next_posses) }}">Наступна сторінка</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

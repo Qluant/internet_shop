@@ -1,0 +1,41 @@
+{% extends "__layout.html" %}
+
+{% block title %}
+    <title>Categories</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/categories_list.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="categories">
+        <form action="" method="post">
+            {% for category in categories %}
+                <div class="category-container">
+                    <div class="category-container-description">
+                        <div class="category-container-description-text">
+                            <p>{{ category.title }}</p>
+                            <p>{{ category.description}}</p>
+                        </div>
+                        {% if user and user.role.title == "Admin" %}
+                            <div class="category-container-description-edit">
+                                <button type="submit" name="action" value="edit|{{ category.id }}">Редагувати</button>
+                            </div>
+                            <div class="category-container-description-delete">
+                                <button type="submit" name="action" value="delete|{{ category.id }}">Видалити</button>
+                            </div>
+                        {% endif %}
+                        <a href="{{ url_for('category_products', category_id=category.id) }}">Детальніше</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </form>
+        {% if user and user.role.title == "Admin" %}
+            <div class="add-link">
+                <a href="{{ url_for('category_adding') }}">Додати категорію</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
