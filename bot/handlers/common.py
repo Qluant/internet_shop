@@ -52,7 +52,7 @@ async def buy_all(message: types.CallbackQuery):
         if admin.telegram_id is None:
             continue
         chat = await bot.get_chat(admin.telegram_id)
-        await bot.send_message(chat_id=message.chat.id, text=text)
+        await bot.send_message(chat_id=chat.id, text=text)
 
         await bot.send_contact(chat_id=chat.id,
                             phone_number=user.phone_number,
